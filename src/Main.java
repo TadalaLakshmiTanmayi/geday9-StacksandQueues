@@ -1,27 +1,15 @@
 public class Main {
     public static void main(String[] args) {
-        LinkedList<Integer> stack = new LinkedList<>();
+        LinkedList<Integer> queue = new LinkedList<>();
 
-        // Push elements to the stack
-        stack.addatbeginning(70);
-        stack.addatbeginning(30);
-        stack.addatbeginning(56);
+        // Enqueue elements to the queue (adding to the tail)
+        queue.addattail(56);
+        queue.addattail(30);
+        queue.addattail(70);
 
-        // Display the stack
-        System.out.println("Stack after push operations:");
-        stack.display();
+        // Display the queue
+        System.out.println("Queue after enqueue operations:");
+        queue.display();
 
-        // Peek the top element
-        System.out.println("Top element: " + stack.peek());
-
-        // Pop elements from the stack
-        System.out.println("Popping top element: " + stack.pop());
-        stack.display();  // Display stack after pop
-
-        System.out.println("Popping top element: " + stack.pop());
-        stack.display();  // Display stack after pop
-
-        System.out.println("Popping top element: " + stack.pop());
-        stack.display();  // Display stack after pop
     }
 }

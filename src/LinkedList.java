@@ -7,42 +7,46 @@ public class LinkedList<T> {
         this.size = 0;
     }
 
-    // Add node at the beginning (push operation)
-    public void addatbeginning(T data) {
+    // Add node at the tail (enqueue operation)
+    public void addattail(T data) {
         Node<T> newNode = new Node<>(data);
         if (head == null) {
-            head = newNode;
+            head = newNode;  // If the list is empty, the new node becomes the head
         } else {
-            newNode.next = head;
-            head = newNode;
+            Node<T> current = head;
+            // Traverse to the end of the list
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;  // Add the new node at the end
         }
         size++;
     }
 
-    // Pop node from the beginning (pop operation)
-    public T pop() {
+    // Remove node from the front (dequeue operation)
+    public T dequeue() {
         if (head == null) {
-            System.out.println("The stack is empty, nothing to pop.");
+            System.out.println("The queue is empty, nothing to dequeue.");
             return null;
         } else {
             T data = head.data;
-            head = head.next;  // Update head to the next node
+            head = head.next;  // Update the head to the next node
             size--;
             return data;
         }
     }
 
-    // Peek at the top element of the stack
+    // Peek at the front element of the queue (without removing)
     public T peek() {
         if (head == null) {
-            System.out.println("The stack is empty, nothing to peek.");
+            System.out.println("The queue is empty, nothing to peek.");
             return null;
         } else {
-            return head.data;  // Return the data of the top element
+            return head.data;  // Return the data of the front element
         }
     }
 
-    // Display the stack
+    // Display the queue
     public void display() {
         Node<T> current = head;
         while (current != null) {
@@ -52,7 +56,7 @@ public class LinkedList<T> {
         System.out.println("null");
     }
 
-    // Size of the list
+    // Size of the queue
     public int size() {
         return size;
     }
