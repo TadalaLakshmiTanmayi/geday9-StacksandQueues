@@ -7,19 +7,7 @@ public class LinkedList<T> {
         this.size = 0;
     }
 
-    public void addattail(T data) {
-        Node<T> newNode = new Node<>(data);
-        if (head == null) {
-            head = newNode;
-        } else {
-            Node<T> current = head;
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = newNode;
-        }
-        size++;
-    }
+    // Add node at the beginning (push operation)
     public void addatbeginning(T data) {
         Node<T> newNode = new Node<>(data);
         if (head == null) {
@@ -30,81 +18,31 @@ public class LinkedList<T> {
         }
         size++;
     }
-    public void insertAfter(T targetData, T newData) {
-        Node<T> current = head;
-        // Traverse the list to find the target node
-        while (current != null && !current.data.equals(targetData)) {
-            current = current.next;
-        }
 
-        if (current != null) {  // If the target node is found
-            Node<T> newNode = new Node<>(newData);  // Create a new node with the given data
-            newNode.next = current.next;  // Link the new node to the next node of the target node
-            current.next = newNode;  // Link the target node to the new node
-            size++;
-        } else {
-            System.out.println("Node with data " + targetData + " not found.");
-        }
-    }
-    public void pop() {
+    // Pop node from the beginning (pop operation)
+    public T pop() {
         if (head == null) {
-            System.out.println("The list is empty, nothing to pop.");
+            System.out.println("The stack is empty, nothing to pop.");
+            return null;
         } else {
-            head = head.next; // Update the head to the next node
+            T data = head.data;
+            head = head.next;  // Update head to the next node
             size--;
+            return data;
         }
     }
-    public void popLast() {
+
+    // Peek at the top element of the stack
+    public T peek() {
         if (head == null) {
-            System.out.println("The list is empty, nothing to pop.");
-        } else if (head.next == null) {
-            head = null;  // If there is only one node, remove it
-            size--;
+            System.out.println("The stack is empty, nothing to peek.");
+            return null;
         } else {
-            Node<T> current = head;
-            // Traverse to the second-to-last node
-            while (current.next != null && current.next.next != null) {
-                current = current.next;
-            }
-            current.next = null;  // Remove the last node
-            size--;
+            return head.data;  // Return the data of the top element
         }
     }
-    public void delete(T key) {
-        if (head == null) {
-            return; // List is empty, nothing to delete
-        }
 
-        // If the node to be deleted is the head
-        if (head.data.equals(key)) {
-            head = head.next;
-            size--;
-            return;
-        }
-
-        // Otherwise, find the node to delete
-        Node<T> current = head;
-        while (current.next != null && !current.next.data.equals(key)) {
-            current = current.next;
-        }
-
-        // If the node was found, remove it
-        if (current.next != null) {
-            current.next = current.next.next;
-            size--;
-        }
-    }
-    public boolean search(T data) {
-        Node<T> current = head;
-        while (current != null) {
-            if (current.data.equals(data)) {
-                return true;  // Return true if data matches
-            }
-            current = current.next;
-        }
-        return false;  // Return false if the node is not found
-    }
-
+    // Display the stack
     public void display() {
         Node<T> current = head;
         while (current != null) {
@@ -114,6 +52,7 @@ public class LinkedList<T> {
         System.out.println("null");
     }
 
+    // Size of the list
     public int size() {
         return size;
     }
